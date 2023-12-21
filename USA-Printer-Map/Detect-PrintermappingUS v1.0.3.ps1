@@ -1,5 +1,7 @@
-﻿#Detection script runs to determine if a US Print Server is available and user is not on VPN; if so, run remediation
+#Detection script runs to determine if a US Print Server is available and user is not on VPN; if so, run remediation
 #Version 1.0 - 8/2/2023 SBarboza@cgf.com
+#Version 1.0.2 - 8/24/2023 added to line 37 'elseif'
+#Version 1.0.3 - 12/21/2023 added more granularity to home IP's
 
 Start-Transcript -Path $(Join-Path $env:temp "PrinterMapDetect.log")
 
@@ -26,14 +28,19 @@ elseif (get-netipaddress -ipaddress 10.0.0.*)
     {write-host "home IP; no remediation"
         exit 0}
 
-elseif (get-netipaddress -ipaddress 192.168.*)
+elseif (get-netipaddress -ipaddress 192.168.1.*)
 
     {write-host "home IP; no remediation"
         exit 0}
 
+elseif (get-netipaddress -ipaddress 192.168.0.*)
+
+    {write-host "home IP: no remediation"
+        exit 0}
+
 #Make sure workstation has connectivity to print server
 
-    (Test-Connection -cn $printServer -BufferSize 16 -Count 1 -ea 0 -quiet)
+elseif (Test-Connection -cn $printServer -BufferSize 16 -Count 1 -ea 0 -quiet)
        {write-host "$printserver detected and workstation is not on vpn, map printers"
              exit 1}
 
