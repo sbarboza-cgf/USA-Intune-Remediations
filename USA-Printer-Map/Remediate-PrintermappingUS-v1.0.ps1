@@ -1,5 +1,7 @@
-﻿#Map USA Network Printers
+#Map USA Network Printers
 #Version 1.0 sbarboza@cgf.com 8/2/2023
+#Version 1.0.1 sbarboza@cgf.com 2/13/2024 - added new name for BOS printer "BankingHuddle"
+#Version 1.0.3 sbarboza@cgf.com 10/22/2024 - updated SF shares, removed MIA shares
 
 Start-Transcript -Path $(Join-Path $env:temp "PrinterMapping.log")
 
@@ -27,7 +29,6 @@ $printers += [pscustomobject]@{PrinterName="nsh_banking_1_color";PrintServer="\\
 $printers += [pscustomobject]@{PrinterName="cha_banking_1_bw";PrintServer="\\us1-print1.canaccord.com\cha_banking_1_bw";ADGroup="SG-US-Printer-CHA-Banking";Default="0"}
 $printers += [pscustomobject]@{PrinterName="cha_banking_1_color";PrintServer="\\us1-print1.canaccord.com\cha_banking_1_color";ADGroup="SG-US-Printer-CHA-Banking";Default="0"}
 $printers += [pscustomobject]@{PrinterName="mn_equities";PrintServer="\\us1-print1.canaccord.com\mn_equities";ADGroup="SG-US-Printer-MN-Equities";Default="0"}
-$printers += [pscustomobject]@{PrinterName="mia_trading_1_b&w";PrintServer="\\us1-print1.canaccord.com\mia_trading_1_b&w";ADGroup="SG-US-Printer-MIA-Trading";Default="0"}
 $printers += [pscustomobject]@{PrinterName="ny888_bullpen_1";PrintServer="\\us1-print1.canaccord.com\ny888_bullpen_1";ADGroup="SG-US-Printer-NY888-Bullpen";Default="0"}
 $printers += [pscustomobject]@{PrinterName="ny888_bullpen_2";PrintServer="\\us1-print1.canaccord.com\ny888_bullpen_2";ADGroup="SG-US-Printer-NY888-Bullpen";Default="0"}
 $printers += [pscustomobject]@{PrinterName="ny888_prod_1";PrintServer="\\us1-print1.canaccord.com\ny888_prod_1";ADGroup="SG-US-Printer-NY888-Prod";Default="0"}
@@ -51,24 +52,19 @@ $printers += [pscustomobject]@{PrinterName="bos_banking_1_b&w";PrintServer="\\us
 $printers += [pscustomobject]@{PrinterName="bos_banking_1_color";PrintServer="\\us1-print1.canaccord.com\bos_banking_1_color";ADGroup="SG-US-Printer-BOS-Banking";Default="0"}
 $printers += [pscustomobject]@{PrinterName="bos_banking_2_b&w";PrintServer="\\us1-print1.canaccord.com\bos_banking_2_b&w";ADGroup="SG-US-Printer-BOS-Banking";Default="0"}
 $printers += [pscustomobject]@{PrinterName="bos_banking_2_color";PrintServer="\\us1-print1.canaccord.com\bos_banking_2_color";ADGroup="SG-US-Printer-BOS-Banking";Default="0"}
+$printers += [pscustomobject]@{PrinterName="bos_bankinghuddle_1_b&w";PrintServer="\\us1-print1.canaccord.com\bos_bankinghuddle_1_b&w";ADGroup="SG-US-Printer-BOS-Banking";Default="0"}
+$printers += [pscustomobject]@{PrinterName="bos_bankinghuddle_1_color";PrintServer="\\us1-print1.canaccord.com\bos_bankinghuddle_1_color";ADGroup="SG-US-Printer-BOS-Banking";Default="0"}
 $printers += [pscustomobject]@{PrinterName="bos_compliance_1_b&w";PrintServer="\\us1-print1.canaccord.com\bos_compliance_1_b&w";ADGroup="SG-US-Printer-BOS-Compliance";Default="0"}
 $printers += [pscustomobject]@{PrinterName="bos_compliance_1_color";PrintServer="\\us1-print1.canaccord.com\bos_compliance_1_color";ADGroup="SG-US-Printer-BOS-Compliance";Default="0"}
 $printers += [pscustomobject]@{PrinterName="bos_equities_1_b&w";PrintServer="\\us1-print1.canaccord.com\bos_equities_1_b&w";ADGroup="SG-US-Printer-BOS-Equities";Default="0"}
 $printers += [pscustomobject]@{PrinterName="bos_equities_1_color";PrintServer="\\us1-print1.canaccord.com\bos_equities_1_color";ADGroup="SG-US-Printer-BOS-Equities";Default="0"}
-$printers += [pscustomobject]@{PrinterName="bos_equities_2_b&w";PrintServer="\\us1-print1.canaccord.com\bos_equities_2_b&w";ADGroup="SG-US-Printer-BOS-Equities";Default="0"}
-$printers += [pscustomobject]@{PrinterName="bos_equities_2_color";PrintServer="\\us1-print1.canaccord.com\bos_equities_2_color";ADGroup="SG-US-Printer-BOS-Equities";Default="0"}
 $printers += [pscustomobject]@{PrinterName="bos_research_1_b&w";PrintServer="\\us1-print1.canaccord.com\bos_research_1_b&w";ADGroup="SG-US-Printer-BOS-Research";Default="0"}
 $printers += [pscustomobject]@{PrinterName="bos_research_1_color";PrintServer="\\us1-print1.canaccord.com\bos_research_1_color";ADGroup="SG-US-Printer-BOS-Research";Default="0"}
-$printers += [pscustomobject]@{PrinterName="bos_research_2_b&w";PrintServer="\\us1-print1.canaccord.com\bos_research_2_b&w";ADGroup="SG-US-Printer-BOS-Research";Default="0"}
-$printers += [pscustomobject]@{PrinterName="bos_research_2_color";PrintServer="\\us1-print1.canaccord.com\bos_research_2_color";ADGroup="SG-US-Printer-BOS-Research";Default="0"}
-$printers += [pscustomobject]@{PrinterName="sf_banking_1_marketing";PrintServer="\\sf-fs1.canaccord.com\sf_banking_1_marketing";ADGroup="SG-US-Printer-SF-Marketing";Default="0"}
-$printers += [pscustomobject]@{PrinterName="sf_banking_2_marketing";PrintServer="\\sf-fs1.canaccord.com\sf_banking_2_marketing";ADGroup="SG-US-Printer-SF-Marketing";Default="0"}
-$printers += [pscustomobject]@{PrinterName="SF_Banking_1_Color";PrintServer="\\SF-FS1.canaccord.com\sf_banking_1_color";ADGroup="SG-US-Printer-SF-Banking";Default="0"}
-$printers += [pscustomobject]@{PrinterName="SF_Banking_1_B&W";PrintServer="\\SF-FS1.canaccord.com\sf_banking_1_b&w";ADGroup="SG-US-Printer-SF-Banking";Default="0"}
-$printers += [pscustomobject]@{PrinterName="SF_Banking_2_B&W";PrintServer="\\SF-FS1.canaccord.com\sf_banking_2_b&w";ADGroup="SG-US-Printer-SF-Banking";Default="0"}
-$printers += [pscustomobject]@{PrinterName="SF_Banking_2_Color";PrintServer="\\SF-FS1.canaccord.com\sf_banking_2_color";ADGroup="SG-US-Printer-SF-Banking";Default="0"}
-$printers += [pscustomobject]@{PrinterName="SF_EQUITIES_1_B&W";PrintServer="\\SF-FS1.canaccord.com\sf_equities_1_b&w";ADGroup="SG-US-Printer-SF-Equities";Default="0"}
-$printers += [pscustomobject]@{PrinterName="SF_EQUITIES_1_Color";PrintServer="\\SF-FS1.canaccord.com\sf_equities_1_color";ADGroup="SG-US-Printer-SF-Equities";Default="0"}
+$printers += [pscustomobject]@{PrinterName="sf_banking_marketing";PrintServer="\\us1-print1.canaccord.com\sf_banking_marketing";ADGroup="SG-US-Printer-SF-Marketing";Default="0"}
+$printers += [pscustomobject]@{PrinterName="SF_banking_Color";PrintServer="\\us1-print1.canaccord.com\sf_banking_color";ADGroup="SG-US-Printer-SF-Banking";Default="0"}
+$printers += [pscustomobject]@{PrinterName="SF_banking_B&W";PrintServer="\\us1-print1.canaccord.com\sf_banking_b&w";ADGroup="SG-US-Printer-SF-Banking";Default="0"}
+$printers += [pscustomobject]@{PrinterName="SF_equities_B&W";PrintServer="\\us1-print1.canaccord.com\sf_equities_b&w";ADGroup="SG-US-Printer-SF-Equities";Default="0"}
+$printers += [pscustomobject]@{PrinterName="SF_equities_Color";PrintServer="\\us1-print1.canaccord.com\sf_equities_color";ADGroup="SG-US-Printer-SF-Equities";Default="0"}
 
 
 
